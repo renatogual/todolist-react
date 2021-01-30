@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
@@ -13,7 +14,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "lint":  "eslint --fix src --ext .jsx"
+    "lint": "eslint --fix src --ext .jsx"
   },
   "browserslist": {
     "production": [
