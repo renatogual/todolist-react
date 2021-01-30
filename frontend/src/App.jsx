@@ -1,6 +1,8 @@
-import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default (props) => {
-  <div className="container">teste</div>
-}
+export default () => (
+  <div className="container">
+    <h1>teste</h1>
+  </div>
+);
