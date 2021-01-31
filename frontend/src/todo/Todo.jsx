@@ -1,3 +1,10 @@
 import React from 'react'
+import PageHeader from '../template/pageHeader'
 
-export default () => <div className="container">Todo</div>
+export default () => {
+  return (
+    <div>
+      <PageHeader name="Tarefas" small="Cadastro"></PageHeader>
+    </div>
+  )
+}
