@@ -1,21 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default () => (
   <nav className="navbar navbar-inverse bg-inverse">
     <div className="container">
       <div className="navbar-header">
-        <a href="#/" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           <i className="fa fa-calendar-check-o"></i> Lista de tarefas
-        </a>
+        </Link>
       </div>
 
       <div id="navbar" className="navbar-collapse collapse">
         <ul className="nav navbar-nav">
           <li>
-            <a href="#/todos">Tarefas</a>
+            <Link to="/todos">Todos</Link>
           </li>
           <li>
-            <a href="#/about">Sobre</a>
+            <Link to="/about">Sobre</Link>
           </li>
         </ul>
       </div>
