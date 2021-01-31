@@ -1,5 +1,5 @@
 import React from 'react'
-import PageHeader from '../template/pageHeader'
+import PageHeader from '../template/PageHeader'
 
 export default () => (
   <div>
