@@ -30,6 +30,10 @@ export default () => {
     axios.post(URL, { description }).then(() => refresh())
   }
 
+  function handleRemove(todo) {
+    axios.delete(`${URL}/${todo._id}`).then(() => refresh())
+  }
+
   return (
     <div>
       <PageHeader name="Tarefas" small="Cadastro"></PageHeader>
@@ -38,7 +42,7 @@ export default () => {
         handleChange={handleChange}
         handleAdd={handleAdd}
       />
-      <TodoList />
+      <TodoList list={state.list} handleRemove={handleRemove} />
     </div>
   )
 }

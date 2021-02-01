@@ -1,4 +1,3 @@
-/* eslint-disable react/style-prop-object */
 import React from 'react'
 import Grid from '../template/Grid'
 import IconButton from '../template/IconButton'
