@@ -14,6 +14,8 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks', 'prettier'],
   rules: {
+    'no-underscore-dangle': 'off',
+    'react/style-prop-object': 'off',
     'prettier/prettier': 'error',
     'react/self-closing-comp': 'off',
     'react-hooks/rules-of-hooks': 'error',
