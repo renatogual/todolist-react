@@ -30,6 +30,10 @@ export default () => {
     refresh(state.description)
   }
 
+  function handleClear() {
+    refresh()
+  }
+
   function handleAdd() {
     const { description } = state
     axios.post(URL, { description }).then(() => refresh())
@@ -59,6 +63,7 @@ export default () => {
         handleChange={handleChange}
         handleAdd={handleAdd}
         handleSearch={handleSearch}
+        handleClear={handleClear}
       />
       <TodoList
         list={state.list}
