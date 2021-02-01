@@ -1,4 +1,4 @@
-const port = 3000
+const port = 3003
 
 const bodyParser = require('body-parser') //Faz o parser das informações recebidas da requisição, transforma em json ou em string
 const express = require('express')
