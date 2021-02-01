@@ -15,14 +15,19 @@ const initialState = {
 export default () => {
   const [state, setState] = useState(initialState)
 
-  function refresh() {
+  function refresh(description = '') {
+    const search = description ? `&description__regex=/${description}/` : ''
     axios
-      .get(`${URL}?sort=-createdAt`)
-      .then((resp) => setState({ ...state, description: '', list: resp.data }))
+      .get(`${URL}?sort=-createdAt${search}`)
+      .then((resp) => setState({ ...state, description, list: resp.data }))
   }
 
   function handleChange(event) {
     setState({ ...state, description: event.target.value })
+  }
+
+  function handleSearch() {
+    refresh(state.description)
   }
 
   function handleAdd() {
@@ -30,8 +35,20 @@ export default () => {
     axios.post(URL, { description }).then(() => refresh())
   }
 
+  function handleMarkAsDone(todo) {
+    axios
+      .put(`${URL}/${todo._id}`, { ...todo, done: true })
+      .then(() => refresh(state.description))
+  }
+
+  function handleMarkAsPending(todo) {
+    axios
+      .put(`${URL}/${todo._id}`, { ...todo, done: false })
+      .then(() => refresh(state.description))
+  }
+
   function handleRemove(todo) {
-    axios.delete(`${URL}/${todo._id}`).then(() => refresh())
+    axios.delete(`${URL}/${todo._id}`).then(() => refresh(state.description))
   }
 
   return (
@@ -41,8 +58,14 @@ export default () => {
         description={state.description}
         handleChange={handleChange}
         handleAdd={handleAdd}
+        handleSearch={handleSearch}
       />
-      <TodoList list={state.list} handleRemove={handleRemove} />
+      <TodoList
+        list={state.list}
+        handleMarkAsDone={handleMarkAsDone}
+        handleMarkAsPending={handleMarkAsPending}
+        handleRemove={handleRemove}
+      />
     </div>
   )
 }
