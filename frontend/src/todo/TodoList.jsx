@@ -37,7 +37,7 @@ export default ({ list, handleMarkAsDone, handleMarkAsPending, handleRemove }) =
       <thead>
         <tr>
           <th>Descrição</th>
-          <th>Ações</th>
+          <th className="tableActions">Ações</th>
         </tr>
       </thead>
       <tbody>{renderRows()}</tbody>
