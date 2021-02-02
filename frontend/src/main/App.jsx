@@ -8,7 +8,7 @@ import Menu from '../template/Menu'
 import Content from './Content'
 
 export default () => (
-  <div className="container">
+  <div className="app">
     <Router>
       <Menu />
       <Content />

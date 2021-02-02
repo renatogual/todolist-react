@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default () => (
   <nav className="navbar navbar-inverse bg-inverse">
-    <div className="container">
+    <div>
       <div className="navbar-header">
         <Link to="/" className="navbar-brand">
           <i className="fa fa-calendar-check-o"></i> Lista de tarefas
