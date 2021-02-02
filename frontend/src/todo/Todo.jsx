@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import PageHeader from '../template/PageHeader'
@@ -21,6 +22,10 @@ export default () => {
       .get(`${URL}?sort=-createdAt${search}`)
       .then((resp) => setState({ ...state, description, list: resp.data }))
   }
+
+  useEffect(() => {
+    refresh()
+  }, [])
 
   function handleChange(event) {
     setState({ ...state, description: event.target.value })
