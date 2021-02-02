@@ -20,36 +20,35 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/) e o [MongoDB](https://www.mongodb.com/).
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
-#### 🎲 Rodando o servidor (backend)
+#### 🎲 Executando a aplicação
 
 ```bash
-    # Clonar o repositório
+    # Clone o repositório
     $ git clone https://github.com/renatogual/todolist-react.git
 
-    # Entrar no diretório
-    $ cd todolist-react && cd backend
+    # Entre no diretório raiz
+    $ cd todolist-react
 
-    # Instalar as dependências
+    # Entre no diretório do servidor
+    $ cd backend
+
+    # Instale as dependências
     $ npm install
 
-    # Iniciar o projeto
+    # Inicie o servidor 💡Lembre-se de estar com o serviço do mongoDB online
     $ npm run dev
-```
 
-#### 🧭 Rodando a aplicação web (frontend)
+    # Voltar para o diretório raiz do projeto
+    cd ..
 
-```bash
-    # Clonar o repositório
-    $ git clone https://github.com/renatogual/todolist-react.git
-
-    # Entrar no diretório
-    $ cd todolist-react && cd frontend
+    # Entrar no diretório para executar o website
+    cd frontend
 
     # Instalar as dependências
-    $ npm install
+    npm install
 
-    # Iniciar o projeto
-    $ npm start
+    # Iniciar a aplicação web
+    npm start
 ```
 
 ---
