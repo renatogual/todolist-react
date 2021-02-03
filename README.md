@@ -1,4 +1,5 @@
 <h1 align="center"> 🚀 Demonstração </h1>
+<img src="frontend/public/todo-list.gif">
 
 ## 🔖 Sobre
 
