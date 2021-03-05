@@ -10,6 +10,8 @@ import {
 } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 
+import Todo from './Todo/Todo'
+
 const useStyles = makeStyles({
   root: {
     height: '100%',
@@ -40,6 +42,9 @@ function Home() {
           variant="outlined"
           autoComplete="off"
         />
+      </Box>
+      <Box p={2} display="flex">
+        <Todo />
       </Box>
       <Fab color="primary" aria-label="add" className={fab}>
         <AddIcon />
