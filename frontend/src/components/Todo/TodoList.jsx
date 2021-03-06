@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   List,
   ListItem,
@@ -14,14 +14,13 @@ import { Delete } from '@material-ui/icons'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
 }))
 
-export default ({ list }) => {
+export default ({ list, handleRemove }) => {
   const { root } = useStyles()
-  const [checked, setChecked] = React.useState([0])
+  const [checked, setChecked] = useState([])
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value)
@@ -35,7 +34,7 @@ export default ({ list }) => {
 
     setChecked(newChecked)
   }
-  console.log(list)
+
   return (
     <List className={root}>
       {list.map((value) => {
@@ -58,8 +57,8 @@ export default ({ list }) => {
             </ListItemIcon>
             <ListItemText id={labelId} primary={value.description} />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="comments">
-                <Delete />
+              <IconButton edge="end" aria-label="delete">
+                <Delete onClick={() => handleRemove(value._id)} />
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>

@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 
-import api from '../../../server/api'
+import api from '../../server/api'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 
@@ -31,45 +31,39 @@ export default () => {
     setState({ ...state, description: event.target.value })
   }
 
-  function handleSearch() {
-    refresh(state.description)
-  }
-
-  function handleClear() {
-    refresh()
-  }
-
   function handleAdd() {
     const { description } = state
     api.post(URL, { description }).then(() => refresh())
   }
 
-  function handleMarkAsDone(todo) {
-    api
-      .put(`${URL}/${todo._id}`, { ...todo, done: true })
-      .then(() => refresh(state.description))
+  function handleRemove(id) {
+    api.delete(`${URL}/${id}`).then(() => refresh(state.description))
   }
 
-  function handleMarkAsPending(todo) {
-    api
-      .put(`${URL}/${todo._id}`, { ...todo, done: false })
-      .then(() => refresh(state.description))
-  }
+  // function handleSearch() {
+  //   refresh(state.description)
+  // }
 
-  function handleRemove(todo) {
-    api.delete(`${URL}/${todo._id}`).then(() => refresh(state.description))
-  }
+  // function handleClear() {
+  //   refresh()
+  // }
+
+  // function handleMarkAsDone(todo) {
+  //   api
+  //     .put(`${URL}/${todo._id}`, { ...todo, done: true })
+  //     .then(() => refresh(state.description))
+  // }
+
+  // function handleMarkAsPending(todo) {
+  //   api
+  //     .put(`${URL}/${todo._id}`, { ...todo, done: false })
+  //     .then(() => refresh(state.description))
+  // }
 
   return (
     <div>
-      <TodoForm
-        description={state.description}
-        handleChange={handleChange}
-        handleAdd={handleAdd}
-        handleSearch={handleSearch}
-        handleClear={handleClear}
-      />
-      <TodoList list={state.list} />
+      <TodoForm handleChange={handleChange} handleAdd={handleAdd} />
+      <TodoList list={state.list} handleRemove={handleRemove} />
     </div>
   )
 }

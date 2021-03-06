@@ -4,13 +4,10 @@ import {
   Box,
   Typography,
   Divider,
-  TextField,
-  Fab,
   makeStyles,
 } from '@material-ui/core'
-import AddIcon from '@material-ui/icons/Add'
 
-import Todo from './Todo/Todo'
+import Todo from '../../components/Todo'
 
 const useStyles = makeStyles({
   root: {
@@ -27,28 +24,14 @@ const useStyles = makeStyles({
 })
 
 function Home() {
-  const { root, fab } = useStyles()
+  const { root } = useStyles()
   return (
     <Container maxWidth="lg" className={root}>
       <Box display="flex" p={2}>
         <Typography variant="h3">Cadastro</Typography>
       </Box>
       <Divider variant="middle" />
-      <Box display="flex" p={2}>
-        <TextField
-          fullWidth
-          id="search"
-          label="Pesquisar"
-          variant="outlined"
-          autoComplete="off"
-        />
-      </Box>
-      <Box p={2} display="flex">
-        <Todo />
-      </Box>
-      <Fab color="primary" aria-label="add" className={fab}>
-        <AddIcon />
-      </Fab>
+      <Todo />
     </Container>
   )
 }
