@@ -23,7 +23,5 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'arrow-body-style': 'off',
     'react/prop-types': 'off',
-    'no-console': 'off',
-    'no-unused-vars': 'off',
   },
 }
