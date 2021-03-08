@@ -8,21 +8,29 @@ import {
   ListItemSecondaryAction,
   IconButton,
   makeStyles,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  TextField,
+  DialogActions,
+  Button,
 } from '@material-ui/core'
 import { Delete } from '@material-ui/icons'
+import EditIcon from '@material-ui/icons/Edit'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
     backgroundColor: theme.palette.background.paper,
+    margin: theme.spacing(2),
   },
 }))
 
-export default ({ list, handleRemove }) => {
+export default ({ list, handleRemove, handleEdit }) => {
   const { root } = useStyles()
   const [checked, setChecked] = useState([])
+  const [dialog, setDialog] = useState({ id: '', description: '', open: false })
 
-  const handleToggle = (value) => () => {
+  function handleToggle(value) {
     const currentIndex = checked.indexOf(value)
     const newChecked = [...checked]
 
@@ -35,35 +43,92 @@ export default ({ list, handleRemove }) => {
     setChecked(newChecked)
   }
 
-  return (
-    <List className={root}>
-      {list.map((value) => {
-        const labelId = `checkbox-list-label-${value.description}`
+  function openDialog(id, description, open) {
+    if (id && description && open) {
+      setDialog({ ...dialog, id, description, open })
+    }
+  }
 
-        return (
-          <ListItem
-            key={value._id}
-            role={undefined}
-            button
-            onClick={handleToggle(value.description)}
+  function handleChangeInputDialog(event) {
+    setDialog({ ...dialog, description: event.target.value })
+  }
+
+  function handleClose() {
+    setDialog({ ...dialog, open: false })
+  }
+
+  return (
+    <>
+      {list.length !== 0 && (
+        <>
+          <List className={root}>
+            {list.map(({ _id, description }) => (
+              <ListItem
+                key={_id}
+                button
+                onClick={() => handleToggle(description)}
+              >
+                <ListItemIcon>
+                  <Checkbox
+                    color="primary"
+                    checked={checked.indexOf(description) !== -1}
+                    disableRipple
+                  />
+                </ListItemIcon>
+                <ListItemText primary={description} />
+                <ListItemSecondaryAction>
+                  {checked.includes(description) && (
+                    <>
+                      <IconButton edge="end" aria-label="edit">
+                        <EditIcon
+                          onClick={() => openDialog(_id, description, true)}
+                        />
+                      </IconButton>
+                      <IconButton edge="end" aria-label="delete">
+                        <Delete onClick={() => handleRemove(_id)} />
+                      </IconButton>
+                    </>
+                  )}
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
+          <Dialog
+            open={dialog.open}
+            onClose={handleClose}
+            aria-labelledby="form-dialog-title"
+            fullWidth
+            maxWidth="md"
           >
-            <ListItemIcon>
-              <Checkbox
-                checked={checked.indexOf(value.description) !== -1}
-                tabIndex={-1}
-                disableRipple
-                inputProps={{ 'aria-labelledby': labelId }}
+            <DialogTitle id="form-dialog-title">Editar</DialogTitle>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                variant="outlined"
+                value={dialog.description}
+                type="text"
+                fullWidth
+                onChange={handleChangeInputDialog}
               />
-            </ListItemIcon>
-            <ListItemText id={labelId} primary={value.description} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete">
-                <Delete onClick={() => handleRemove(value._id)} />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
-        )
-      })}
-    </List>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => handleClose()} color="primary">
+                Cancelar
+              </Button>
+              <Button
+                onClick={() => {
+                  handleEdit(dialog)
+                  handleClose()
+                }}
+                color="primary"
+              >
+                Editar
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </>
+      )}
+    </>
   )
 }

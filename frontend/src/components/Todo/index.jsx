@@ -32,38 +32,52 @@ export default () => {
   }
 
   function handleAdd() {
+    let isIncluding = false
     const { description } = state
-    api.post(URL, { description }).then(() => refresh())
+
+    state.list.forEach((element) => {
+      if (description === element.description) isIncluding = true
+    })
+
+    if (!isIncluding && description) {
+      api.post(URL, { description }).then(() => refresh())
+    }
   }
 
   function handleRemove(id) {
     api.delete(`${URL}/${id}`).then(() => refresh(state.description))
   }
 
+  function handleEdit(dialog) {
+    api
+      .put(`${URL}/${dialog.id}`, {
+        ...dialog,
+        description: dialog.description,
+      })
+      .then(() => refresh(state.description))
+  }
+
   // function handleSearch() {
   //   refresh(state.description)
   // }
 
-  // function handleClear() {
-  //   refresh()
-  // }
-
-  // function handleMarkAsDone(todo) {
-  //   api
-  //     .put(`${URL}/${todo._id}`, { ...todo, done: true })
-  //     .then(() => refresh(state.description))
-  // }
-
-  // function handleMarkAsPending(todo) {
-  //   api
-  //     .put(`${URL}/${todo._id}`, { ...todo, done: false })
-  //     .then(() => refresh(state.description))
-  // }
+  function handleClear() {
+    refresh()
+  }
 
   return (
-    <div>
-      <TodoForm handleChange={handleChange} handleAdd={handleAdd} />
-      <TodoList list={state.list} handleRemove={handleRemove} />
-    </div>
+    <>
+      <TodoForm
+        description={state.description}
+        handleChange={handleChange}
+        handleAdd={handleAdd}
+        handleClear={handleClear}
+      />
+      <TodoList
+        list={state.list}
+        handleRemove={handleRemove}
+        handleEdit={handleEdit}
+      />
+    </>
   )
 }

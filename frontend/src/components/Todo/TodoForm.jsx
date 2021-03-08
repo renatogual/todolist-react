@@ -9,16 +9,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default ({ handleChange, handleAdd }) => {
+export default ({ description, handleChange, handleAdd, handleClear }) => {
   const { root } = useStyles()
 
   function keyHandler(e) {
     if (e.key === 'Enter') handleAdd()
+    if (e.key === 'Escape') handleClear()
   }
 
   return (
     <Box display="flex" p={2}>
       <TextField
+        value={description}
         className={root}
         fullWidth
         id="add"
