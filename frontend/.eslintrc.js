@@ -24,5 +24,6 @@ module.exports = {
     'arrow-body-style': 'off',
     'react/prop-types': 'off',
     'no-console': 'off',
+    'no-unused-vars': 'off',
   },
 }
