@@ -14,13 +14,6 @@ const useStyles = makeStyles({
     height: '100%',
     position: 'relative',
   },
-  fab: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    marginBottom: '10px',
-    marginRight: '10px',
-  },
 })
 
 function Home() {
