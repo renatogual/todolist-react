@@ -57,9 +57,9 @@ export default () => {
       .then(() => refresh(state.description))
   }
 
-  // function handleSearch() {
-  //   refresh(state.description)
-  // }
+  function handleSearch() {
+    refresh(state.description)
+  }
 
   function handleClear() {
     refresh()
@@ -72,6 +72,7 @@ export default () => {
         handleChange={handleChange}
         handleAdd={handleAdd}
         handleClear={handleClear}
+        handleSearch={handleSearch}
       />
       <TodoList
         list={state.list}
