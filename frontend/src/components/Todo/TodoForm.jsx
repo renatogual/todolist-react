@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import { Box, Button, TextField, makeStyles } from '@material-ui/core'
+import { Box, Button, TextField, makeStyles, Tooltip } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import { Search, Backspace } from '@material-ui/icons'
 
@@ -44,25 +44,31 @@ export default ({
         onChange={handleChange}
         onKeyUp={keyHandler}
       />
-      <Button
-        color="primary"
-        variant="contained"
-        onClick={handleAdd}
-        className={marginRight}
-      >
-        <AddIcon />
-      </Button>
-      <Button
-        color="primary"
-        variant="contained"
-        onClick={handleSearch}
-        className={marginRight}
-      >
-        <Search />
-      </Button>
-      <Button color="primary" variant="contained" onClick={handleClear}>
-        <Backspace />
-      </Button>
+      <Tooltip title="Adicionar" placement="bottom" arrow>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={handleAdd}
+          className={marginRight}
+        >
+          <AddIcon />
+        </Button>
+      </Tooltip>
+      <Tooltip title="Pesquisar" placement="bottom" arrow>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={handleSearch}
+          className={marginRight}
+        >
+          <Search />
+        </Button>
+      </Tooltip>
+      <Tooltip title="Limpar" placement="bottom" arrow>
+        <Button color="primary" variant="contained" onClick={handleClear}>
+          <Backspace />
+        </Button>
+      </Tooltip>
     </Box>
   )
 }
