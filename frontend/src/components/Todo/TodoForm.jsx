@@ -1,15 +1,17 @@
-/* eslint-disable no-unused-vars */
-import React from 'react'
+/* eslint-disable no-console */
+import React, { useState } from 'react'
 import { Box, Button, TextField, makeStyles, Tooltip } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import { Search, Backspace } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingRight: theme.spacing(2),
-  },
-  marginRight: {
-    marginRight: theme.spacing(2),
+  specialButton: {
+    marginLeft: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(1),
+      minWidth: 0,
+      width: '10%',
+    },
   },
 }))
 
@@ -20,7 +22,12 @@ export default ({
   handleClear,
   handleSearch,
 }) => {
-  const { root, marginRight } = useStyles()
+  const { specialButton } = useStyles()
+  const [screenWidth, setScreenWidth] = useState()
+
+  window.addEventListener('resize', () => {
+    setScreenWidth(window.innerWidth)
+  })
 
   function keyHandler(e) {
     if (e.key === 'Enter') {
@@ -35,10 +42,10 @@ export default ({
     <Box display="flex" p={2}>
       <TextField
         value={description}
-        className={root}
+        size={screenWidth < 600 ? 'small' : 'medium'}
         fullWidth
         id="add"
-        label="Adicionar / Pesquisar"
+        label="Adicionar/Pesquisar"
         variant="outlined"
         autoComplete="off"
         onChange={handleChange}
@@ -49,7 +56,7 @@ export default ({
           color="primary"
           variant="contained"
           onClick={handleAdd}
-          className={marginRight}
+          className={specialButton}
         >
           <AddIcon />
         </Button>
@@ -59,13 +66,18 @@ export default ({
           color="primary"
           variant="contained"
           onClick={handleSearch}
-          className={marginRight}
+          className={specialButton}
         >
           <Search />
         </Button>
       </Tooltip>
       <Tooltip title="Limpar" placement="bottom" arrow>
-        <Button color="primary" variant="contained" onClick={handleClear}>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={handleClear}
+          className={specialButton}
+        >
           <Backspace />
         </Button>
       </Tooltip>
