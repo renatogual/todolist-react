@@ -4,7 +4,7 @@
 ## 🔖 Sobre
 
 Este projeto de lista de tarefas foi criado para colocar em prática conceitos de CRUD
-utilizando o framework React, criação de API com NodeJS e Express e design de interface com a biblioteca Material-UI.
+utilizando o framework React, criação de API em Node com Express e design de interface com a biblioteca Material-UI.
 
 Foi utilizado a ferramenta **[eslint](https://eslint.org/)** no frontend para padronizar a escrita dos códigos.
 
@@ -56,13 +56,13 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 ## 🛠 Ferramentas utilizadas
 
 No Frontend
-- **[ReactJS](https://reactjs.org)**
+- **[React](https://reactjs.org)**
 - **[Axios](https://github.com/axios/axios)**
 - **[Material-UI](https://material-ui.com/pt/)**
 
 
 No Backend
-- **[NodeJS](https://nodejs.org)**
+- **[Node](https://nodejs.org)**
 - **[Express](https://expressjs.com/)**
 - **[Node-restful](https://www.npmjs.com/package/node-restful)**
 - **[Body-parser](https://www.npmjs.com/package/body-parser)**
